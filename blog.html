@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Avaliações e depoimentos sobre os produtos da Kogiski's Salgados Artesanais." />
+    <meta name="keywords" content="avaliações, depoimentos, opiniões, Kogiski's, salgados artesanais" />
+    <meta name="author" content="Kogiski's Salgados Artesanais" />
+
+    <title>Avaliações - Kogiski's Salgados Artesanais</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Cabeçalho */
+        .cabecalho {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .cabecalho .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo img {
+            height: 60px;
+        }
+        
+        .menu-principal {
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .menu-lista {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu-lista li {
+            margin-left: 25px;
+        }
+        
+        .menu-lista a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .menu-lista a:hover {
+            color: #d4a373;
+        }
+        
+        /* Conteúdo principal */
+        main {
+            padding: 40px 0;
+        }
+        
+        .pagina-titulo {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .pagina-titulo h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .pagina-titulo p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Seção de avaliações */
+        .avaliacoes {
+            padding: 60px 0;
+        }
+        
+        .avaliacoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .avaliacao-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .avaliacao-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .avaliacao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .avaliacao-cliente {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cliente-foto {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #d4a373;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .cliente-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .cliente-info p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .avaliacao-estrelas {
+            color: #ffc107;
+            font-size: 1.1rem;
+        }
+        
+        .avaliacao-texto {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .avaliacao-produto {
+            display: flex;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .produto-miniatura {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+        
+        .produto-info h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .produto-info p {
+            color: #d4a373;
+            font-weight: 500;
+        }
+        
+        /* Formulário de avaliação */
+        .form-avaliacao {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-avaliacao h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .form-grupo {
+            margin-bottom: 20px;
+        }
+        
+        .form-grupo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-grupo input,
+        .form-grupo select,
+        .form-grupo textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-grupo textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .avaliacao-estrelas-input {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .estrela-input {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .estrela-input.ativa {
+            color: #ffc107;
+        }
+        
+        .btn-enviar {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #d4a373;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-enviar:hover {
+            background: #b3875f;
+        }
+        
+        /* Estatísticas de avaliações */
+        .estatisticas-avaliacoes {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .estatistica-item {
+            padding: 20px;
+        }
+        
+        .estatistica-numero {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #d4a373;
+            margin-bottom: 10px;
+        }
+        
+        .estatistica-descricao {
+            color: #666;
+        }
+        
+        /* Rodapé */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-icons {
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #d4a373;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .menu-lista {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                width: 200px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-radius: 5px;
+                padding: 10px 0;
+            }
+            
+            .menu-lista.ativo {
+                display: flex;
+            }
+            
+            .menu-lista li {
+                margin: 0;
+                padding: 10px 20px;
+            }
+            
+            .avaliacoes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .estatisticas-avaliacoes {
+                flex-direction: column;
+            }
+            
+            .estatistica-item {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/logo-salgadaria.jpg" alt="Kogiski's Salgados Artesanais">
+            </a>
+            
+            <nav class="menu-principal">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="menu-lista">
+                    <li><a href="index.html">inicio</a></li>
+                    <li><a href="quem.html">Quem Somos</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="blog.html" class="ativo">Avaliações</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="pagina-titulo">
+            <div class="container">
+                <h1>Avaliações dos Nossos Clientes</h1>
+                <p>Confira o que nossos clientes estão dizendo sobre a experiência com nossos produtos. Sua opinião é muito importante para nós!</p>
+            </div>
+        </section>
+        
+        <!-- Estatísticas de avaliações -->
+        <section class="estatisticas-avaliacoes">
+            <div class="estatistica-item">
+                <div class="estatistica-numero">4.8</div>
+                <div class="estatistica-descricao">Avaliação Média</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero">327</div>
+                <div class="estatistica-descricao">Avaliações Recebidas</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero">98%</div>
+                <div class="estatistica-descricao">Clientes Satisfeitos</div>
+            </div>
+        </section>
+        
+        <!-- Seção de avaliações -->
+        <section class="avaliacoes">
+            <div class="container">
+                <div class="avaliacoes-grid">
+                    <!-- Avaliação 1 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto">MC</div>
+                                <div class="cliente-info">
+                                    <h3>Maria Clara</h3>
+                                    <p>Há 2 dias</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Comprei o bolo de amora preta para o aniversário da minha filha e foi um sucesso! A massa estava macia e o recheio era delicioso. Todos os convidados elogiaram. Com certeza encomendarei novamente!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80');"></div>
+                            <div class="produto-info">
+                                <h4>Bolo de Amora Preta</h4>
+                                <p>R$ 77,50</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 2 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto">JS</div>
+                                <div class="cliente-info">
+                                    <h3>João Silva</h3>
+                                    <p>Há 1 semana</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Os salgados são realmente artesanais! Dá para sentir a diferença na massa e no recheio. A coxinha de frango é a minha favorita, sempre peço quando vou passar o fim de semana com a família.</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://th.bing.com/th/id/OIP.05wvvggIDB2UOCDAT4qH_QHaEh?w=296&h=181&c=7&r=0&o=7&pid=1.7&rm=3');"></div>
+                            <div class="produto-info">
+                                <h4>Coxinha de Frango</h4>
+                                <p>R$ 4,50</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 3 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto">AS</div>
+                                <div class="cliente-info">
+                                    <h3>Ana Souza</h3>
+                                    <p>Há 3 semanas</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Adorei o atendimento e a qualidade dos produtos! Compro sempre os doces para levar para o trabalho e meus colegas sempre pedem para eu trazer mais. O brigadeiro gourmet é divino!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://receitasdepesos.com.br/wp-content/uploads/2022/05/Untitled-design-2022-05-19T174343.599.jpg');"></div>
+                            <div class="produto-info">
+                                <h4>Brigadeiro Gourmet</h4>
+                                <p>R$ 3,50</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 4 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto">PF</div>
+                                <div class="cliente-info">
+                                    <h3>Pedro Fernandes</h3>
+                                    <p>Há 1 mês</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>O café especial é muito bom, mas achei um pouco caro para o tamanho da xícara. O sabor é excelente, com um toque suave de canela que faz toda a diferença. Recomendo experimentar!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80');"></div>
+                            <div class="produto-info">
+                                <h4>Café Especial</h4>
+                                <p>R$ 5,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 5 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto">CR</div>
+                                <div class="cliente-info">
+                                    <h3>Carla Rodrigues</h3>
+                                    <p>Há 2 meses</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Fiz uma encomenda para a festa da minha empresa e todos adoraram! Os salgados estavam fresquinhos e saborosos. O atendimento foi excelente e a entrega foi pontual. Super recomendo!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://cdn0.tudoreceitas.com/pt/posts/2/8/8/empada_de_palmito_9882_orig.jpg');"></div>
+                            <div class="produto-info">
+                                <h4>Empada de Palmito</h4>
+                                <p>R$ 5,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 6 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto">LM</div>
+                                <div class="cliente-info">
+                                    <h3>Lucas Mendes</h3>
+                                    <p>Há 3 meses</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Compro sempre o bolo de chocolate para o café da manhã em família. É macio, úmido e o chocolate é de ótima qualidade. Minha filha adora! Já experimentei outros sabores e todos são excelentes.</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80');"></div>
+                            <div class="produto-info">
+                                <h4>Bolo de Chocolate</h4>
+                                <p>R$ 65,00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulário de avaliação -->
+                <div class="form-avaliacao">
+                    <h2>Deixe Sua Avaliação</h2>
+                    <form id="formAvaliacao">
+                        <div class="form-grupo">
+                            <label for="nome">Seu Nome</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="email">Seu E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="produto">Produto Avaliado</label>
+                            <select id="produto" name="produto" required>
+                                <option value="">Selecione um produto</option>
+                                <option value="Bolo de Amora Preta">Bolo de Amora Preta</option>
+                                <option value="Empada de Palmito">Empada de Palmito</option>
+                                <option value="Coxinha de Frango">Coxinha de Frango</option>
+                                <option value="Pastel de Carne">Pastel de Carne</option>
+                                <option value="Brigadeiro Gourmet">Brigadeiro Gourmet</option>
+                                <option value="Croissant">Croissant</option>
+                                <option value="Bolo de Chocolate">Bolo de Chocolate</option>
+                                <option value="Bolo de Limão">Bolo de Limão</option>
+                                <option value="Café Tradicional">Café Tradicional</option>
+                                <option value="Café Especial">Café Especial</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label>Avaliação</label>
+                            <div class="avaliacao-estrelas-input" id="estrelasInput">
+                                <span class="estrela-input" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                            <input type="hidden" id="avaliacao" name="avaliacao" value="0" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="comentario">Seu Comentário</label>
+                            <textarea id="comentario" name="comentario" placeholder="Conte sua experiência com o produto..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-enviar">Enviar Avaliação</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" aria-label="Link para o Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="https://www.instagram.com/041_gustavinzx/?next=%2F"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com" target="_blank" aria-label="Link para o X/Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>© 2025 Kogiski's Salgados Artesanais - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Menu responsivo
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-lista').classList.toggle('ativo');
+        });
+        
+        // Sistema de avaliação por estrelas
+        const estrelasInput = document.querySelectorAll('.estrela-input');
+        const inputAvaliacao = document.getElementById('avaliacao');
+        
+        estrelasInput.forEach(estrela => {
+            estrela.addEventListener('click', function() {
+                const valor = this.getAttribute('data-value');
+                inputAvaliacao.value = valor;
+                
+                // Atualizar visual das estrelas
+                estrelasInput.forEach((e, index) => {
+                    if (index < valor) {
+                        e.classList.add('ativa');
+                        e.innerHTML = '<i class="fas fa-star"></i>';
+                    } else {
+                        e.classList.remove('ativa');
+                        e.innerHTML = '<i class="far fa-star"></i>';
+                    }
+                });
+            });
+            
+            // Efeito hover
+            estrela.addEventListener('mouseover', function() {
+                const valor = this.getAttribute('data-value');
+                estrelasInput.forEach((e, index) => {
+                    if (index < valor) {
+                        e.innerHTML = '<i class="fas fa-star"></i>';
+                    }
+                });
+            });
+            
+            estrela.addEventListener('mouseout', function() {
+                const valorAvaliacao = inputAvaliacao.value;
+                estrelasInput.forEach((e, index) => {
+                    if (index >= valorAvaliacao) {
+                        e.innerHTML = '<i class="far fa-star"></i>';
+                    }
+                });
+            });
+        });
+        
+        // Envio do formulário
+        document.getElementById('formAvaliacao').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aqui normalmente enviaria os dados para um servidor
+            // Por enquanto, apenas mostra um alerta
+            alert('Obrigado por sua avaliação! Ela será publicada após moderação.');
+            this.reset();
+            
+            // Resetar estrelas
+            estrelasInput.forEach(estrela => {
+                estrela.classList.remove('ativa');
+                estrela.innerHTML = '<i class="far fa-star"></i>';
+            });
+            inputAvaliacao.value = '0';
+        });
+    </script>
+</body>
+</html>
