@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Avaliações e depoimentos sobre os produtos da Kogiski's Salgados Artesanais." />
+    <meta name="keywords" content="avaliações, depoimentos, opiniões, Kogiski's, salgados artesanais" />
+    <meta name="author" content="Kogiski's Salgados Artesanais" />
+
+    <title>Avaliações - Kogiski's Salgados Artesanais</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        /* Paleta de cores inspirada no Emporio Kaminski */
+        :root {
+            --primary: #8B4513; /* Marrom saddle (tom principal) */
+            --primary-light: #A0522D; /* Marrom sienna claro */
+            --primary-dark: #654321; /* Marrom escuro */
+            --secondary: #D2B48C; /* Bege tan */
+            --accent: #CD853F; /* Marrom peru */
+            --neutral-light: #F5F5DC; /* Bege claro (bege) */
+            --neutral: #DEB887; /* Marrom claro (burlywood) */
+            --neutral-dark: #5D4037; /* Marrom escuro elegante */
+            --text: #3E2723; /* Marrom muito escuro para texto */
+            --white: #FFFFFF;
+            --success: #8FBC8F; /* Verde escuro suave */
+            --gold: #D4AF37; /* Dourado para detalhes */
+            --shadow: rgba(139, 69, 19, 0.1);
+            --shadow-hover: rgba(139, 69, 19, 0.2);
+        }
+        
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--neutral-light);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d2b48c' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Cabeçalho */
+        .cabecalho {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .cabecalho.scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 20px var(--shadow-hover);
+        }
+        
+        .cabecalho .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            transition: padding 0.3s ease;
+        }
+        
+        .logo img {
+            height: 70px;
+            transition: all 0.3s ease;
+            filter: brightness(0.9);
+        }
+        
+        .cabecalho.scrolled .logo img {
+            height: 55px;
+        }
+        
+        .menu-principal {
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        .menu-lista {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu-lista li {
+            margin-left: 25px;
+        }
+        
+        .menu-lista a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .menu-lista a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .menu-lista a:hover, .menu-lista a.ativo {
+            color: var(--primary-dark);
+        }
+        
+        .menu-lista a:hover:after, .menu-lista a.ativo:after {
+            width: 100%;
+        }
+        
+        /* Conteúdo principal */
+        main {
+            padding: 60px 0;
+        }
+        
+        .pagina-titulo {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .pagina-titulo h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .pagina-titulo p {
+            font-size: 1.3rem;
+            color: var(--text);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .pagina-titulo:after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Estatísticas de avaliações */
+        .estatisticas-avaliacoes {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 25px var(--shadow);
+            margin-bottom: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            border: 1px solid var(--secondary);
+            position: relative;
+        }
+        
+        .estatisticas-avaliacoes:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+        
+        .estatistica-item {
+            padding: 20px;
+        }
+        
+        .estatistica-numero {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        .estatistica-descricao {
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        
+        /* Seção de avaliações */
+        .avaliacoes {
+            padding: 60px 0;
+        }
+        
+        .avaliacoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+        
+        .avaliacao-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--secondary);
+            position: relative;
+        }
+        
+        .avaliacao-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--shadow-hover);
+        }
+        
+        .avaliacao-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+        
+        .avaliacao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .avaliacao-cliente {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cliente-foto {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+            border: 2px solid var(--secondary);
+        }
+        
+        .cliente-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cliente-info p {
+            color: var(--neutral);
+            font-size: 0.95rem;
+        }
+        
+        .avaliacao-estrelas {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        .avaliacao-texto {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: var(--text);
+            font-size: 1.05rem;
+        }
+        
+        .avaliacao-produto {
+            display: flex;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--secondary);
+        }
+        
+        .produto-miniatura {
+            width: 65px;
+            height: 65px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+            border: 1px solid var(--secondary);
+        }
+        
+        .produto-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .produto-info p {
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+        
+        /* Formulário de avaliação */
+        .form-avaliacao {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 8px 25px var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--secondary);
+            position: relative;
+        }
+        
+        .form-avaliacao:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+        
+        .form-avaliacao h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .form-grupo {
+            margin-bottom: 25px;
+        }
+        
+        .form-grupo label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-grupo input,
+        .form-grupo select,
+        .form-grupo textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: var(--neutral-light);
+        }
+        
+        .form-grupo input:focus,
+        .form-grupo select:focus,
+        .form-grupo textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+        
+        .form-grupo textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        .avaliacao-estrelas-input {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .estrela-input {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .estrela-input.ativa {
+            color: var(--gold);
+        }
+        
+        .btn-enviar {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-enviar:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
+        }
+        
+        /* Rodapé */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo img {
+            height: 80px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .social-icons {
+            margin-bottom: 30px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .footer-info {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            width: 100%;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .menu-lista {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--white);
+                width: 200px;
+                box-shadow: 0 5px 15px var(--shadow-hover);
+                border-radius: 8px;
+                padding: 10px 0;
+                z-index: 1001;
+                border: 1px solid var(--secondary);
+            }
+            
+            .menu-lista.ativo {
+                display: flex;
+            }
+            
+            .menu-lista li {
+                margin: 0;
+                padding: 10px 20px;
+            }
+            
+            .avaliacoes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .estatisticas-avaliacoes {
+                flex-direction: column;
+            }
+            
+            .estatistica-item {
+                margin-bottom: 20px;
+            }
+            
+            .pagina-titulo h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-avaliacao {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="file:///C:/Users/Gustavo/Downloads/Kogiski%E2%80%99s%20Salgados%20Artesanais/logo-salgadaria.jpg" alt="Kogiski's Salgados Artesanais">
+            </a>
+            
+            <nav class="menu-principal">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="menu-lista">
+                    <li><a href="index.html">inicio</a></li>
+                    <li><a href="quem.html">Quem Somos</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="blog.html" class="ativo">Avaliações</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="pagina-titulo">
+            <div class="container">
+                <h1>Avaliações dos Nossos Clientes</h1>
+                <p>Confira o que nossos clientes estão dizendo sobre a experiência com nossos produtos. Sua opinião é muito importante para nós!</p>
+            </div>
+        </section>
+        
+        <!-- Estatísticas de avaliações -->
+        <section class="estatisticas-avaliacoes">
+            <div class="estatistica-item">
+                <div class="estatistica-numero">4.8</div>
+                <div class="estatistica-descricao">Avaliação Média</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero">327</div>
+                <div class="estatistica-descricao">Avaliações Recebidas</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero">98%</div>
+                <div class="estatistica-descricao">Clientes Satisfeitos</div>
+            </div>
+        </section>
+        
+        <!-- Seção de avaliações -->
+        <section class="avaliacoes">
+            <div class="container">
+                <div class="avaliacoes-grid">
+                    <!-- Avaliação 1 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto" style="background-image: url('data:image/jpeg;base64,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');"></div>
+                                <div class="cliente-info">
+                                    <h3>Ana castela</h3>
+                                    <p>Há 2 dias</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Comprei o bolo de amora preta para o aniversário da minha filha e foi um sucesso! A massa estava macia e o recheio era delicioso. Todos os convidados elogiaram. Com certeza encomendarei novamente!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80');"></div>
+                            <div class="produto-info">
+                                <h4>Bolo de Amora Preta</h4>
+                                <p>R$ 77,50</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 2 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto" style="background-image: url('data:image/jpeg;base64,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');"></div>
+                                <div class="cliente-info">
+                                    <h3>Teto</h3>
+                                    <p>Há 1 semana</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Os salgados são realmente artesanais! Dá para sentir a diferença na massa e no recheio. A coxinha de frango é a minha favorita, sempre peço quando vou passar o fim de semana com a família.</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://th.bing.com/th/id/OIP.05wvvggIDB2UOCDAT4qH_QHaEh?w=296&h=181&c=7&r=0&o=7&pid=1.7&rm=3');"></div>
+                            <div class="produto-info">
+                                <h4>Coxinha de Frango</h4>
+                                <p>R$ 4,50</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 3 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto" style="background-image: url('https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                                <div class="cliente-info">
+                                    <h3>Ana Souza</h3>
+                                    <p>Há 3 semanas</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Adorei o atendimento e a qualidade dos produtos! Compro sempre os doces para levar para o trabalho e meus colegas sempre pedem para eu trazer mais. O brigadeiro gourmet é divino!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://receitasdepesos.com.br/wp-content/uploads/2022/05/Untitled-design-2022-05-19T174343.599.jpg');"></div>
+                            <div class="produto-info">
+                                <h4>Brigadeiro Gourmet</h4>
+                                <p>R$ 3,50</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 4 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                                <div class="cliente-info">
+                                    <h3>Pedro Fernandes</h3>
+                                    <p>Há 1 mês</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>O café especial é muito bom, mas achei um pouco caro para o tamanho da xícara. O sabor é excelente, com um toque suave de canela que faz toda a diferença. Recomendo experimentar!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80');"></div>
+                            <div class="produto-info">
+                                <h4>Café Especial</h4>
+                                <p>R$ 5,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 5 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                                <div class="cliente-info">
+                                    <h3>Carla Rodrigues</h3>
+                                    <p>Há 2 meses</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Fiz uma encomenda para a festa da minha empresa e todos adoraram! Os salgados estavam fresquinhos e saborosos. O atendimento foi excelente e a entrega foi pontual. Super recomendo!</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://cdn0.tudoreceitas.com/pt/posts/2/8/8/empada_de_palmito_9882_orig.jpg');"></div>
+                            <div class="produto-info">
+                                <h4>Empada de Palmito</h4>
+                                <p>R$ 5,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Avaliação 6 -->
+                    <div class="avaliacao-card">
+                        <div class="avaliacao-header">
+                            <div class="avaliacao-cliente">
+                                <div class="cliente-foto" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIL9EZ6M_KkVDUNNTThlKLgLt6giroCMfmwQ&s');"></div>
+                                <div class="cliente-info">
+                                    <h3>Matuê</h3>
+                                    <p>Há 3 meses</p>
+                                </div>
+                            </div>
+                            <div class="avaliacao-estrelas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="avaliacao-texto">
+                            <p>Compro sempre o bolo de chocolate para o café da manhã em família. É macio, úmido e o chocolate é de ótima qualidade. Minha filha adora! Já experimentei outros sabores e todos são excelentes.</p>
+                        </div>
+                        <div class="avaliacao-produto">
+                            <div class="produto-miniatura" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80');"></div>
+                            <div class="produto-info">
+                                <h4>Bolo de Chocolate</h4>
+                                <p>R$ 65,00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulário de avaliação -->
+                <div class="form-avaliacao">
+                    <h2>Deixe Sua Avaliação</h2>
+                    <form id="formAvaliacao">
+                        <div class="form-grupo">
+                            <label for="nome">Seu Nome</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="email">Seu E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="produto">Produto Avaliado</label>
+                            <select id="produto" name="produto" required>
+                                <option value="">Selecione um produto</option>
+                                <option value="Bolo de Amora Preta">Bolo de Amora Preta</option>
+                                <option value="Empada de Palmito">Empada de Palmito</option>
+                                <option value="Coxinha de Frango">Coxinha de Frango</option>
+                                <option value="Pastel de Carne">Pastel de Carne</option>
+                                <option value="Brigadeiro Gourmet">Brigadeiro Gourmet</option>
+                                <option value="Croissant">Croissant</option>
+                                <option value="Bolo de Chocolate">Bolo de Chocolate</option>
+                                <option value="Bolo de Limão">Bolo de Limão</option>
+                                <option value="Café Tradicional">Café Tradicional</option>
+                                <option value="Café Especial">Café Especial</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label>Avaliação</label>
+                            <div class="avaliacao-estrelas-input" id="estrelasInput">
+                                <span class="estrela-input" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="estrela-input" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                            <input type="hidden" id="avaliacao" name="avaliacao" value="0" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="comentario">Seu Comentário</label>
+                            <textarea id="comentario" name="comentario" placeholder="Conte sua experiência com o produto..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-enviar">Enviar Avaliação</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" aria-label="Link para o Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="https://www.instagram.com/041_gustavinzx/?next=%2F"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com" target="_blank" aria-label="Link para o X/Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>© 2025 Kogiski's Salgados Artesanais - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Menu responsivo
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-lista').classList.toggle('ativo');
+        });
+        
+        // Sistema de avaliação por estrelas
+        const estrelasInput = document.querySelectorAll('.estrela-input');
+        const inputAvaliacao = document.getElementById('avaliacao');
+        
+        estrelasInput.forEach(estrela => {
+            estrela.addEventListener('click', function() {
+                const valor = this.getAttribute('data-value');
+                inputAvaliacao.value = valor;
+                
+                // Atualizar visual das estrelas
+                estrelasInput.forEach((e, index) => {
+                    if (index < valor) {
+                        e.classList.add('ativa');
+                        e.innerHTML = '<i class="fas fa-star"></i>';
+                    } else {
+                        e.classList.remove('ativa');
+                        e.innerHTML = '<i class="far fa-star"></i>';
+                    }
+                });
+            });
+            
+            // Efeito hover
+            estrela.addEventListener('mouseover', function() {
+                const valor = this.getAttribute('data-value');
+                estrelasInput.forEach((e, index) => {
+                    if (index < valor) {
+                        e.innerHTML = '<i class="fas fa-star"></i>';
+                    }
+                });
+            });
+            
+            estrela.addEventListener('mouseout', function() {
+                const valorAvaliacao = inputAvaliacao.value;
+                estrelasInput.forEach((e, index) => {
+                    if (index >= valorAvaliacao) {
+                        e.innerHTML = '<i class="far fa-star"></i>';
+                    }
+                });
+            });
+        });
+        
+        // Envio do formulário
+        document.getElementById('formAvaliacao').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aqui normalmente enviaria os dados para um servidor
+            // Por enquanto, apenas mostra um alerta
+            alert('Obrigado por sua avaliação! Ela será publicada após moderação.');
+            this.reset();
+            
+            // Resetar estrelas
+            estrelasInput.forEach(estrela => {
+                estrela.classList.remove('ativa');
+                estrela.innerHTML = '<i class="far fa-star"></i>';
+            });
+            inputAvaliacao.value = '0';
+        });
+    </script>
+</body>
+</html>
