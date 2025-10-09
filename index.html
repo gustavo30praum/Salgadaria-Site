@@ -930,51 +930,139 @@
     
     <!-- JavaScript -->
     <script>
-        // Dados dos produtos
-        const products = [
-            {
-                id: 1,
-                name: "Coxinha de Frango",
-                price: 4.50,
-                image: "https://th.bing.com/th/id/OIP.05wvvggIDB2UOCDAT4qH_QHaEh?w=296&h=181&c=7&r=0&o=7&pid=1.7&rm=3",
-                description: "Massa macia com recheio de frango desfiado temperado."
+        // Sistema de banco de dados usando localStorage
+        const Database = {
+            // Chaves para armazenamento
+            KEYS: {
+                CART: 'kogiski_cart',
+                PRODUCTS: 'kogiski_products',
+                ORDERS: 'kogiski_orders'
             },
-            {
-                id: 2,
-                name: "Pastel de Carne",
-                price: 5.50,
-                image: "https://sabordesejado.com.br/wp-content/uploads/2021/05/pastel-de-carne.jpg",
-                description: "Massa crocante com recheio de carne moída temperada."
+            
+            // Inicializar dados padrão se não existirem
+            init: function() {
+                // Inicializar produtos se não existirem
+                if (!localStorage.getItem(this.KEYS.PRODUCTS)) {
+                    this.saveProducts(this.getDefaultProducts());
+                }
+                
+                // Inicializar carrinho se não existir
+                if (!localStorage.getItem(this.KEYS.CART)) {
+                    this.saveCart([]);
+                }
+                
+                // Inicializar pedidos se não existirem
+                if (!localStorage.getItem(this.KEYS.ORDERS)) {
+                    this.saveOrders([]);
+                }
             },
-            {
-                id: 3,
-                name: "Empada de Palmito",
-                price: 5.00,
-                image: "https://cdn0.tudoreceitas.com/pt/posts/2/8/8/empada_de_palmito_9882_orig.jpg",
-                description: "Massa folhada com recheio cremoso de palmito."
+            
+            // Obter produtos padrão
+            getDefaultProducts: function() {
+                return [
+                    {
+                        id: 1,
+                        name: "Coxinha de Frango",
+                        price: 4.50,
+                        image: "https://th.bing.com/th/id/OIP.05wvvggIDB2UOCDAT4qH_QHaEh?w=296&h=181&c=7&r=0&o=7&pid=1.7&rm=3",
+                        description: "Massa macia com recheio de frango desfiado temperado.",
+                        category: "salgados",
+                        available: true
+                    },
+                    {
+                        id: 2,
+                        name: "Pastel de Carne",
+                        price: 5.50,
+                        image: "https://sabordesejado.com.br/wp-content/uploads/2021/05/pastel-de-carne.jpg",
+                        description: "Massa crocante com recheio de carne moída temperada.",
+                        category: "salgados",
+                        available: true
+                    },
+                    {
+                        id: 3,
+                        name: "Empada de Palmito",
+                        price: 5.00,
+                        image: "https://cdn0.tudoreceitas.com/pt/posts/2/8/8/empada_de_palmito_9882_orig.jpg",
+                        description: "Massa folhada com recheio cremoso de palmito.",
+                        category: "salgados",
+                        available: true
+                    },
+                    {
+                        id: 4,
+                        name: "Bolo de Chocolate",
+                        price: 65.00,
+                        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
+                        description: "Bolo macio com recheio de brigadeiro e cobertura de chocolate.",
+                        category: "doces",
+                        available: true
+                    },
+                    {
+                        id: 5,
+                        name: "Cupcake de Morango",
+                        price: 10.00,
+                        image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
+                        description: "Cupcake macio com recheio de morango e chocolate branco.",
+                        category: "doces",
+                        available: true
+                    },
+                    {
+                        id: 6,
+                        name: "Brigadeiro Gourmet",
+                        price: 3.50,
+                        image: "https://receitasdepesos.com.br/wp-content/uploads/2022/05/Untitled-design-2022-05-19T174343.599.jpg",
+                        description: "Brigadeiro cremoso com chocolate 70% e granulado especial.",
+                        category: "doces",
+                        available: true
+                    }
+                ];
             },
-            {
-                id: 4,
-                name: "Bolo de Chocolate",
-                price: 65.00,
-                image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
-                description: "Bolo macio com recheio de brigadeiro e cobertura de chocolate."
+            
+            // Salvar produtos
+            saveProducts: function(products) {
+                localStorage.setItem(this.KEYS.PRODUCTS, JSON.stringify(products));
             },
-            {
-                id: 5,
-                name: "Cupcake de Morango",
-                price: 10.00,
-                image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
-                description: "Cupcake macio com recheio de morango e chocolate branco."
+            
+            // Obter produtos
+            getProducts: function() {
+                return JSON.parse(localStorage.getItem(this.KEYS.PRODUCTS)) || [];
             },
-            {
-                id: 6,
-                name: "Brigadeiro Gourmet",
-                price: 3.50,
-                image: "https://receitasdepesos.com.br/wp-content/uploads/2022/05/Untitled-design-2022-05-19T174343.599.jpg",
-                description: "Brigadeiro cremoso com chocolate 70% e granulado especial."
+            
+            // Obter produto por ID
+            getProductById: function(id) {
+                const products = this.getProducts();
+                return products.find(product => product.id === id);
+            },
+            
+            // Salvar carrinho
+            saveCart: function(cart) {
+                localStorage.setItem(this.KEYS.CART, JSON.stringify(cart));
+            },
+            
+            // Obter carrinho
+            getCart: function() {
+                return JSON.parse(localStorage.getItem(this.KEYS.CART)) || [];
+            },
+            
+            // Salvar pedidos
+            saveOrders: function(orders) {
+                localStorage.setItem(this.KEYS.ORDERS, JSON.stringify(orders));
+            },
+            
+            // Obter pedidos
+            getOrders: function() {
+                return JSON.parse(localStorage.getItem(this.KEYS.ORDERS)) || [];
+            },
+            
+            // Adicionar pedido
+            addOrder: function(order) {
+                const orders = this.getOrders();
+                order.id = Date.now(); // ID único baseado no timestamp
+                order.date = new Date().toISOString();
+                orders.push(order);
+                this.saveOrders(orders);
+                return order.id;
             }
-        ];
+        };
 
         // Estado do carrinho
         let cart = [];
@@ -995,22 +1083,26 @@
 
         // Inicializar produtos
         function initializeProducts() {
+            const products = Database.getProducts();
             productsGrid.innerHTML = '';
+            
             products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'produto-card';
-                productCard.innerHTML = `
-                    <div class="produto-imagem" style="background-image: url('${product.image}')"></div>
-                    <div class="produto-info">
-                        <h3 class="produto-titulo">${product.name}</h3>
-                        <p class="produto-descricao">${product.description}</p>
-                        <p class="produto-preco">R$ ${product.price.toFixed(2)}</p>
-                        <button class="btn-adicionar" data-id="${product.id}">
-                            Adicionar ao Carrinho
-                        </button>
-                    </div>
-                `;
-                productsGrid.appendChild(productCard);
+                if (product.available) {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'produto-card';
+                    productCard.innerHTML = `
+                        <div class="produto-imagem" style="background-image: url('${product.image}')"></div>
+                        <div class="produto-info">
+                            <h3 class="produto-titulo">${product.name}</h3>
+                            <p class="produto-descricao">${product.description}</p>
+                            <p class="produto-preco">R$ ${product.price.toFixed(2)}</p>
+                            <button class="btn-adicionar" data-id="${product.id}">
+                                Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    `;
+                    productsGrid.appendChild(productCard);
+                }
             });
 
             // Adicionar event listeners aos botões
@@ -1024,7 +1116,7 @@
 
         // Adicionar produto ao carrinho
         function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
+            const product = Database.getProductById(productId);
             if (!product) return;
 
             const existingItem = cart.find(item => item.id === productId);
@@ -1082,6 +1174,7 @@
                         <p>Seu carrinho está vazio</p>
                     </div>
                 `;
+                Database.saveCart(cart);
                 return;
             }
 
@@ -1137,6 +1230,9 @@
                     removeFromCart(id);
                 });
             });
+
+            // Salvar carrinho no banco de dados
+            Database.saveCart(cart);
         }
 
         // Mostrar notificação
@@ -1154,10 +1250,41 @@
                 return;
             }
 
-            const total = cartTotal.toFixed(2);
-            const itemCount = cartCount;
+            // Coletar informações do cliente
+            const customerName = prompt("Por favor, digite seu nome:");
+            if (!customerName) {
+                alert("É necessário informar seu nome para finalizar a compra.");
+                return;
+            }
+
+            const customerPhone = prompt("Por favor, digite seu telefone:");
+            if (!customerPhone) {
+                alert("É necessário informar seu telefone para finalizar a compra.");
+                return;
+            }
+
+            const customerAddress = prompt("Por favor, digite seu endereço para entrega:");
+            if (!customerAddress) {
+                alert("É necessário informar seu endereço para finalizar a compra.");
+                return;
+            }
+
+            // Criar pedido
+            const order = {
+                customer: {
+                    name: customerName,
+                    phone: customerPhone,
+                    address: customerAddress
+                },
+                items: [...cart],
+                total: cartTotal,
+                status: 'pendente'
+            };
+
+            // Salvar pedido no banco de dados
+            const orderId = Database.addOrder(order);
             
-            alert(`Compra finalizada!\n\nTotal: R$ ${total}\nItens: ${itemCount}\n\nObrigado pela preferência!`);
+            alert(`Pedido #${orderId} realizado com sucesso!\n\nTotal: R$ ${cartTotal.toFixed(2)}\nItens: ${cartCount}\n\nEntregaremos em: ${customerAddress}\n\nObrigado pela preferência, ${customerName}!`);
             
             // Limpar carrinho
             cart = [];
@@ -1178,7 +1305,13 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Carrossel de banners - MELHORIAS IMPLEMENTADAS
+        // Carregar carrinho salvo
+        function loadCart() {
+            cart = Database.getCart();
+            updateCart();
+        }
+
+        // Carrossel de banners
         function initializeCarousel() {
             const slides = document.querySelectorAll('.slide');
             const controles = document.querySelectorAll('.controle');
@@ -1203,7 +1336,6 @@
                 goToSlide(currentSlide - 1);
             }
             
-            // Melhorias para garantir que os botões funcionem corretamente
             setaDireita.addEventListener('click', function() {
                 clearInterval(slideInterval);
                 nextSlide();
@@ -1282,11 +1414,12 @@
         checkoutBtn.addEventListener('click', checkout);
 
         // Inicializar
+        Database.init();
         initializeProducts();
+        loadCart();
         initializeCarousel();
         initializeMenu();
         initializeHeaderScroll();
-        updateCart();
 
         // Tecla ESC para fechar carrinho
         document.addEventListener('keydown', (e) => {
@@ -1296,5 +1429,5 @@
         });
     </script>
 </body>
-
 </html>
+
